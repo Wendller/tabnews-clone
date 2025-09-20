@@ -1,7 +1,7 @@
 const { exec } = require("node:child_process");
 
-let progressBar = "[          ]";
-const fullProgressBar = "[██████████]";
+let progressBar = "[                    ]";
+const fullProgressBar = "[████████████████████]";
 let progressPercentage = 0;
 
 function updateStdOut(message) {
@@ -16,7 +16,7 @@ function checkPostgres() {
   function handleReturn(error, stdout) {
     if (stdout.search("accepting connections") === -1) {
       if (progressPercentage < 90) {
-        progressPercentage += 10;
+        progressPercentage += 5;
         progressBar = progressBar.replace(" ", "█");
       }
 
@@ -30,7 +30,7 @@ function checkPostgres() {
     updateStdOut(
       `🔴 Waiting Postgres to be ready for connections: ${fullProgressBar} 100%`,
     );
-    console.log("\n🟢 Postgres is ready!");
+    console.log("\n🟢 Postgres is ready!\n");
     return;
   }
 }
