@@ -35,5 +35,7 @@ function checkPostgres() {
   }
 }
 
-process.stdout.write("🔴 Waiting Postgres to be ready for connections: ");
+process.stdout.write(
+  `🔴 Waiting Postgres to be ready for connections: ${progressBar} ${progressPercentage}`,
+);
 checkPostgres();
